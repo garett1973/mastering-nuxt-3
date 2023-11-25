@@ -22,12 +22,10 @@
         </div>
         <VideoPlayer v-if="lesson.videoId" :videoId="lesson.videoId" />
         <p class="mb-4">{{ lesson.text }}</p>
-        <ClientOnly>
             <LessonCompleteButton 
                 :model-value="isLessonComplete"
                 @update:model-value="toggleComplete"
             />
-        </ClientOnly>
     </div>
 </template>
 

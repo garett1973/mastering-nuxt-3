@@ -1,11 +1,9 @@
 <template>
     <div class="flex flex-col h-screen">
-        <div>
-            <div class="flex justify-center w-full bg-gray-100 my-6">
-                <h1 class="text-3xl font-bold">
-                    Course: Mastering Nuxt 3
-                </h1>
-            </div>
+        <div class="prose mb-4 w-full flex justify-center">
+            <h1 class="text-3xl font-bold">
+                Course: Mastering Nuxt 3
+            </h1>
         </div>
         <div class="flex flex-grow">
             <div class="flex flex-row w-full">
@@ -42,6 +40,11 @@
 
 <script setup>
     const { chapters } = useCourse();
+    definePageMeta({
+        title: 'Mastering Nuxt 3',
+        description: 'Learn how to build a Nuxt 3 app from scratch',
+        layout: 'custom',
+    });
 </script>
 
 <!-- <style scoped>

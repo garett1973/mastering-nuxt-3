@@ -2,6 +2,7 @@ https://youtu.be/H_Pk57no2BQ?si=Pl_QwqyoGPA-CkHQ&t=2142
 https://youtu.be/H_Pk57no2BQ?si=1WbFLWUr45pVojwN&t=2735
 https://youtu.be/H_Pk57no2BQ?si=CHcx1MdllAQAbHu6&t=3783
 https://youtu.be/H_Pk57no2BQ?si=t3WSy29ecMpMRuW6&t=4366
+https://youtu.be/H_Pk57no2BQ?si=sKxsnSW9WFwRG4s1&t=6594
 
 https://github.com/j-alvarezsone/mastering-nuxt-3/tree/main
 source:
