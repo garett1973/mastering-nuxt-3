@@ -31,7 +31,10 @@
                     </div>
                 </div>
                 <div class="w-3/4 mr-6 mt-4 bg-white rounded-md p-5 my-6">
-                    <NuxtPage />
+                    <NuxtErrorBoundary>
+                        <NuxtLoading />
+                        <NuxtPage />
+                    </NuxtErrorBoundary>
                 </div>
             </div>
         </div>
@@ -45,6 +48,7 @@
         description: 'Learn how to build a Nuxt 3 app from scratch',
         layout: 'custom',
     });
+
 </script>
 
 <!-- <style scoped>

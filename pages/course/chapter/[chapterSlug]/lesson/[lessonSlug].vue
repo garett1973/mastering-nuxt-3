@@ -33,13 +33,57 @@
     const course = useCourse();
     const route = useRoute();
 
+    definePageMeta({
+        validate({ params }) {
+            const course = useCourse();
+
+            const chapter = course.chapters.find((chapter) => {
+                return chapter.slug === params.chapterSlug;
+            });
+            
+            if (!chapter) {
+                return createError({
+                    statusCode: 404,
+                    message: 'Chapter not found',
+                });
+            }
+
+            const lesson = chapter.lessons.find((lesson) => {
+                return lesson.slug === params.lessonSlug;
+            });
+
+            if (!lesson) {
+                return createError({
+                    statusCode: 404,
+                    message: 'Lesson not found',
+                });
+            }
+
+            return true;
+        },
+    });
+
     const chapter = computed(() => {
         return course.chapters.find(chapter => chapter.slug === route.params.chapterSlug);
     });
 
+    // if (!chapter.value) {
+    //     throw createError({
+    //         statusCode: 404,
+    //         message: 'Chapter not found',
+    //     });
+    // }
+
     const lesson = computed(() => {
         return chapter.value.lessons.find(lesson => lesson.slug === route.params.lessonSlug);
     });
+
+    // if (!lesson.value) {
+    //     throw createError({
+    //         statusCode: 404,
+    //         message: 'Lesson not found',
+    //     });
+    // }
 
     useHead({
         title: `${lesson.value.title} - ${course.title}`,
@@ -51,10 +95,6 @@
             },
         ],
     });
-
-    // const progress = useState('progress', () => {
-    //     return [];
-    // });
 
     // using local storage to preserve the state of lessons
     const progress = useLocalStorage('progress', []);
