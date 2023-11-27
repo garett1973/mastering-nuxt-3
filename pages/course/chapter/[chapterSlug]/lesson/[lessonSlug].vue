@@ -34,7 +34,7 @@
     const route = useRoute();
 
     definePageMeta({
-        validate({ params }) {
+        middleware: function({params}, from) {
             const course = useCourse();
 
             const chapter = course.chapters.find((chapter) => {
@@ -42,10 +42,12 @@
             });
             
             if (!chapter) {
-                return createError({
+                return abortNavigation(
+                    createError({
                     statusCode: 404,
                     message: 'Chapter not found',
-                });
+                    })
+                );
             }
 
             const lesson = chapter.lessons.find((lesson) => {
@@ -53,13 +55,13 @@
             });
 
             if (!lesson) {
-                return createError({
+                return abortNavigation(
+                    createError({
                     statusCode: 404,
                     message: 'Lesson not found',
-                });
+                    })
+                );
             }
-
-            return true;
         },
     });
 
@@ -67,23 +69,9 @@
         return course.chapters.find(chapter => chapter.slug === route.params.chapterSlug);
     });
 
-    // if (!chapter.value) {
-    //     throw createError({
-    //         statusCode: 404,
-    //         message: 'Chapter not found',
-    //     });
-    // }
-
     const lesson = computed(() => {
         return chapter.value.lessons.find(lesson => lesson.slug === route.params.lessonSlug);
     });
-
-    // if (!lesson.value) {
-    //     throw createError({
-    //         statusCode: 404,
-    //         message: 'Lesson not found',
-    //     });
-    // }
 
     useHead({
         title: `${lesson.value.title} - ${course.title}`,
